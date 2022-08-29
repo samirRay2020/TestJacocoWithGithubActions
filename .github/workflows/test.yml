@@ -1,0 +1,37 @@
+
+name: 🧙🏻‍♂️️
+on:
+  workflow_dispatch:
+   inputs:
+      name:
+        type: choice
+        description: Who to greet
+        options: 
+        - monalisa
+
+jobs:
+  unittests:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: generate jacoco coverage report
+        run:  >
+          java -agentlib:jdwp=transport=dt_socket,address=*:1044,server=y,suspend=n -jar ./jar/jacococli.jar dump --destfile ./target/jacoco.exec --address localhost --port 8088
+
+
+      # - name: Upload Jacoco Results
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: "coverage"
+      #     path: "**/target/jacoco.exec"
+
+   
+
+ 
+
+
+  
+          
+    
